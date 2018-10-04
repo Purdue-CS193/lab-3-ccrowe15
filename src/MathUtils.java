@@ -3,7 +3,7 @@ public class MathUtils {
      * divideNumbers -- a / b
      * Divide a by b and return the result
      */
-    public static double divideNumbers(int dividend, int divisor) {
+    public static double divideNumbers(double dividend, double divisor) {
         /* Do some casual division ... Super easy ... Shouldn't be any problems here */
         double res = dividend / divisor;
         /* Return the DEFINITELY CORRECT result */
@@ -24,21 +24,31 @@ public class MathUtils {
             exp *= -1;
             isNegative = true;
         }
-
         /* Multiply the result by the base exp times
             Ex: base = 2, exp = 2
                --> res = 2, then res = 4 */
-        for (int i = 0; i < exp; i++) {
-           res *= base; 
+        if (exp == 1) {
+            res = base;
+        } else {
+            for (int i = 0; i < exp-1; i++) {
+                res *= base;
+            }
         }
-
         /* If it's a negative exponent, we should invert it! */
         if (isNegative) {
-            double dividedRes = divideNumbers(1, res);
+            double dividedRes;
+            //if (exp == 1) {
+               // dividedRes = res/2;
+            //} else {
+            dividedRes = divideNumbers(1, res);
+
+            //dividedRes = divideNumbers(base, res);
+            //}
             return dividedRes;
         }
         /* Otherwise, we are safe to just return the result */
         else {
+
             return res;
         }
     }    
